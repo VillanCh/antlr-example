@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-antlr -Dlanguage=Go -o gen -package gen SimpleExpr.g4
+antlr -Dlanguage=Go -o gen -package gen -visitor SimpleExpr.g4

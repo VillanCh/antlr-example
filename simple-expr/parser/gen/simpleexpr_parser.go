@@ -178,6 +178,16 @@ func (s *StartContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
+func (s *StartContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case SimpleExprVisitor:
+		return t.VisitStart(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
 func (p *SimpleExprParser) Start() (localctx IStartContext) {
 	localctx = NewStartContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 0, SimpleExprParserRULE_start)
@@ -276,6 +286,16 @@ func (s *ExprContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *ExprContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(SimpleExprListener); ok {
 		listenerT.ExitExpr(s)
+	}
+}
+
+func (s *ExprContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case SimpleExprVisitor:
+		return t.VisitExpr(s)
+
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -395,6 +415,16 @@ func (s *PrimaryExprContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *PrimaryExprContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(SimpleExprListener); ok {
 		listenerT.ExitPrimaryExpr(s)
+	}
+}
+
+func (s *PrimaryExprContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case SimpleExprVisitor:
+		return t.VisitPrimaryExpr(s)
+
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -522,6 +552,16 @@ func (s *UnaryExprContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *UnaryExprContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(SimpleExprListener); ok {
 		listenerT.ExitUnaryExpr(s)
+	}
+}
+
+func (s *UnaryExprContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case SimpleExprVisitor:
+		return t.VisitUnaryExpr(s)
+
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -658,6 +698,16 @@ func (s *AdditiveExprContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *AdditiveExprContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(SimpleExprListener); ok {
 		listenerT.ExitAdditiveExpr(s)
+	}
+}
+
+func (s *AdditiveExprContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case SimpleExprVisitor:
+		return t.VisitAdditiveExpr(s)
+
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -840,6 +890,16 @@ func (s *MultiplicativeExprContext) EnterRule(listener antlr.ParseTreeListener) 
 func (s *MultiplicativeExprContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(SimpleExprListener); ok {
 		listenerT.ExitMultiplicativeExpr(s)
+	}
+}
+
+func (s *MultiplicativeExprContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case SimpleExprVisitor:
+		return t.VisitMultiplicativeExpr(s)
+
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
